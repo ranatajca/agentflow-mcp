@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentflow-mcp"
+version = "0.1.0"
+description = "Planner / parallel executors / critic agent workflow over Model Context Protocol servers."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Rana Taj" }]
+dependencies = ["mcp>=2.3,<3", "pydantic>=2.5", "anyio>=4", "anthropic>=0.40"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.4"]
+
+[project.scripts]
+agentflow = "agentflow.cli:main"
+agentflow-knowledge = "agentflow.servers.knowledge:main"
+agentflow-compute = "agentflow.servers.compute:main"
+
+[tool.setuptools.packages.find]
+include = ["agentflow*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
